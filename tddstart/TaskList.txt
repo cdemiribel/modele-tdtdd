@@ -1,0 +1,2 @@
+[X] 1 - Créer un classe DictionnaryTest
+ [X] 1 - Créer un Constructeur vide 
