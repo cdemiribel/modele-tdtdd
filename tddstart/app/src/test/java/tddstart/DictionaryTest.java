@@ -8,7 +8,7 @@ import java.util.Map;
 import static org.hamcrest.CoreMatchers.equalTo;
 
 public class DictionaryTest {
-    private Map<String,String> m;
+    private Map<String,String> m = null;
     @Test public void testDictionaryName() {
         Dictionary dict = new Dictionary("Example",m); 
 
@@ -18,7 +18,7 @@ public class DictionaryTest {
     @Test public void testDictionnary(){
         Dictionary d = new Dictionary(null,m);
 
-        assertThat(d.IsEmpty(), equalTo(false));
+        assertThat(d.IsEmpty(m), equalTo(true));
     }
     @Test public void testOneTranslation() {
         Dictionary d = new Dictionary("dic",m);

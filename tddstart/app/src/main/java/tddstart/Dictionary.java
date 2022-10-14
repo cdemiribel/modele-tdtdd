@@ -14,7 +14,10 @@ public class Dictionary {
     public String getName() {
         return name;
     }
-    public boolean IsEmpty(){
+    public boolean IsEmpty(Map m){
+        if(m == null)
+            return true;
+        else
             return false;
     }
     
