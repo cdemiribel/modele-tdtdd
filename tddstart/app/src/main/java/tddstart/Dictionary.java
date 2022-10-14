@@ -1,12 +1,16 @@
 package tddstart;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class Dictionary {
     private String name;
-    private Map<String,String> hasmap; 
+    private Map<String,Set<String>> hasmap; 
     public Dictionary(String name, Map hasmap){
         this.name=name;
         this.hasmap= new HashMap<>();
@@ -21,15 +25,23 @@ public class Dictionary {
             return false;
     }
     
-    public void addTranslation(String a, String b){
-        hasmap.put(a,b);
+    public void addTranslation(String fr, String an){
+        if(!hasmap.containsKey(fr)){
+            Set<String> l =new TreeSet<>();
+            l.add(an);
+            hasmap.put(fr,l);
+        }
+        else{
+            Set<String> k = hasmap.get(fr);
+            k.add(an);
+        }
 
     }
 
-    public String getTranslation(String b){
+    public Set<String> getTranslation(String b){
         if(hasmap.containsKey(b))
             return hasmap.get(b);
-        return  "";
+        return null;
     }
     
 }
