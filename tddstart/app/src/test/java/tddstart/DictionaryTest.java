@@ -2,7 +2,10 @@ package tddstart;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
+import static org.hamcrest.Matchers.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -30,4 +33,12 @@ public class DictionaryTest {
         d.addTranslation("paix", "peace");
         assertThat(d.getTranslation("paix"), equalTo("peace"));
     }
+
+    @Test public void testDoubleTranslation() {
+        Dictionary d = new Dictionary("dic",m);
+        d.addTranslation("contre", "against");
+        d.addTranslation("contre", "opposante");
+        assertThat(d.getTranslation("contre"), (equalTo("against")));
+    }
+
 }

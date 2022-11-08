@@ -10,10 +10,11 @@ import java.util.TreeSet;
 
 public class Dictionary {
     private String name;
-    private Map<String,Set<String>> hasmap; 
+    private Map<String,String> translations; 
+    private Map<String,List<String>> test; 
     public Dictionary(String name, Map hasmap){
         this.name=name;
-        this.hasmap= new HashMap<>();
+        this.translations= new HashMap<>();
     }
     public String getName() {
         return name;
@@ -25,22 +26,35 @@ public class Dictionary {
             return false;
     }
     
-    public void addTranslation(String fr, String an){
-        if(!hasmap.containsKey(fr)){
-            Set<String> l =new TreeSet<>();
+    public void addMultiTranslation(String fr, String an){
+        if(!test.containsKey(fr)){
+            List l =new ArrayList();
             l.add(an);
-            hasmap.put(fr,l);
+            test.put(fr,l);
         }
         else{
-            Set<String> k = hasmap.get(fr);
+            List<String> k = test.get(fr);
             k.add(an);
         }
 
     }
 
-    public Set<String> getTranslation(String b){
-        if(hasmap.containsKey(b))
-            return hasmap.get(b);
+    public List<String> getMultiTranslation(String b){
+        if(translations.containsKey(b))
+            return test.get(b);
+        return null;
+    }
+    
+    public void addTranslation(String fr, String an){
+        if(!translations.containsKey(fr)){
+            translations.put(fr,an);
+        }
+
+    }
+
+    public String getTranslation(String b){
+        if(translations.containsKey(b))
+            return translations.get(b);
         return null;
     }
     
