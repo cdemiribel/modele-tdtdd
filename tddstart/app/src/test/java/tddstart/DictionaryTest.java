@@ -36,9 +36,9 @@ public class DictionaryTest {
 
     @Test public void testDoubleTranslation() {
         Dictionary d = new Dictionary("dic",m);
-        d.addTranslation("contre", "against");
-        d.addTranslation("contre", "opposante");
-        assertThat(d.getTranslation("contre"), (equalTo("against")));
+        d.addMultiTranslation("contre", "against");
+        d.addMultiTranslation("contre", "opposante");
+        assertThat(d.getMultiTranslation("contre"), containsInAnyOrder("against","opposante"));
     }
 
 }

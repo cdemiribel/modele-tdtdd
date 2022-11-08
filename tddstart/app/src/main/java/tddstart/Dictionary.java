@@ -10,8 +10,7 @@ import java.util.TreeSet;
 
 public class Dictionary {
     private String name;
-    private Map<String,String> translations; 
-    private Map<String,List<String>> test; 
+    private Map<String,List<String>> translations; 
     public Dictionary(String name, Map hasmap){
         this.name=name;
         this.translations= new HashMap<>();
@@ -25,15 +24,14 @@ public class Dictionary {
         else
             return false;
     }
-    
     public void addMultiTranslation(String fr, String an){
-        if(!test.containsKey(fr)){
+        if(!translations.containsKey(fr)){
             List l =new ArrayList();
             l.add(an);
-            test.put(fr,l);
+            translations.put(fr,l);
         }
         else{
-            List<String> k = test.get(fr);
+            List<String> k = translations.get(fr);
             k.add(an);
         }
 
@@ -41,20 +39,28 @@ public class Dictionary {
 
     public List<String> getMultiTranslation(String b){
         if(translations.containsKey(b))
-            return test.get(b);
+            return translations.get(b);
         return null;
     }
     
-    public void addTranslation(String fr, String an){
-        if(!translations.containsKey(fr)){
-            translations.put(fr,an);
-        }
-
+    public void addTranslation(String fr, String an){if(!translations.containsKey(fr)){
+        List l =new ArrayList();
+        l.add(an);
+        translations.put(fr,l);
+    }
+    else{
+        List<String> k = translations.get(fr);
+        k.add(an);
     }
 
+}
+
     public String getTranslation(String b){
-        if(translations.containsKey(b))
-            return translations.get(b);
+        String ls;
+        if(translations.containsKey(b)){
+            ls = getMultiTranslation(b).get(0);
+            return ls;
+        }
         return null;
     }
     
